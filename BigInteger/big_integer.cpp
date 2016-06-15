@@ -39,11 +39,11 @@ static inline void normalcode(big_integer &a) {
     }
 }
 
-static inline void check_zerodiv(big_integer const &a) {
+static void check_zerodiv(big_integer const &a) {
     if (a == 0) throw std::string("Devising by zero\n");
 }
 
-static inline void check_zerodiv(int_fast32_t a) {
+static void check_zerodiv(int_fast32_t a) {
     if (a == 0) throw std::string("Devising by zero\n");
 }
 
