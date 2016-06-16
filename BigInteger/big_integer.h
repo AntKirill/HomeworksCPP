@@ -5,9 +5,29 @@
 #include <vector>
 #include <cstdint>
 
+struct big_integer;
+
+static bool zerocheck(big_integer &a);
+
+static void afterMultSignValidation(big_integer &th, bool xsign);
+
+static void extracode(big_integer &a);
+
+static void normalcode(big_integer &a);
+
+static big_integer &abstractLogicOperation(big_integer &a, big_integer b,
+                                           uint_fast32_t (*logicFunc)(uint_fast32_t, uint_fast32_t),
+                                           bool (*check)(bool, bool));
+
+static bool cmpPosSigns(big_integer const &a, big_integer const &b);
+
+static big_integer mult(big_integer const &b, uint_fast32_t x);
+
+static big_integer &divWithMod(big_integer &th, int_fast32_t const x, bool div);
+
+static big_integer &divWithModBig(big_integer &th, big_integer const &rhs, bool div);
+
 struct big_integer {
-    std::vector<uint_fast32_t> number;
-    bool sign;
 
     big_integer();
 
@@ -76,6 +96,30 @@ struct big_integer {
     friend bool operator>=(big_integer const &a, big_integer const &b);
 
     friend std::string to_string(big_integer const &a);
+
+    friend bool zerocheck(big_integer &a);
+
+    friend void afterMultSignValidation(big_integer &th, bool xsign);
+
+    friend void extracode(big_integer &a);
+
+    friend void normalcode(big_integer &a);
+
+    friend big_integer &abstractLogicOperation(big_integer &a, big_integer b,
+                                               uint_fast32_t (*logicFunc)(uint_fast32_t, uint_fast32_t),
+                                               bool (*check)(bool, bool));
+
+    friend bool cmpPosSigns(big_integer const &a, big_integer const &b);
+
+    friend big_integer mult(big_integer const &b, uint_fast32_t x);
+
+    friend big_integer &divWithModBig(big_integer &th, big_integer const &rhs, bool div);
+
+    friend big_integer &divWithMod(big_integer &th, int_fast32_t const x, bool div);
+
+private:
+    std::vector<uint_fast32_t> number;
+    bool sign;
 };
 
 big_integer operator+(big_integer a, big_integer const &b);
